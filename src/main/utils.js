@@ -1,4 +1,5 @@
 import fetch from 'node-fetch';
+import forge from 'node-forge';
 
 let nonce = Date.now() % 10000;
 const logicUrl =
@@ -22,17 +23,36 @@ function retrieveResult(obj, isQuery) {
 
 export async function hash(stringToHash) {
   // TODO implement secure hashing
-  return 'Hash(' + stringToHash + ')';
+  // hash with SHA256 and encode hashed string with hex
+  var md = forge.md.sha256.create();
+  md.update(stringToHash);
+  var hashedString = md.digest().toHex();
+  return hashedString.toUpperCase();
 }
 
 export async function decryptAsymetricKey(key, message) {
   // TODO implement decryption
-  return message.slice(message.indexOf('(') + 1, message.length - 1);
+  // Assume that key format is ASN.1 encoded with base64 string
+  if(key == null) return message.slice(message.indexOf('(') + 1, message.length - 1);
+  // decode key string
+  const derString = forge.util.decode64(key);
+  // convert to ASN.1 format
+  const asn = forge.asn1.fromDer(derString);
+  const privateKey = forge.pki.privateKeyFromAsn1(asn);
+  return privateKey.decrypt(message);
 }
 
 export async function encryptAsymetricKey(key, message) {
   // TODO implement encryption
-  return 'Encrypt_with_' + key + '(' + message + ')';
+  // encrypt with RSA public key, assume that key format is ASN.1 encoded with base64 string
+  // note that this can only encrypt small size of data, if you want to encrypt file, please consider using gpg encryption
+  if(key == null) return 'Encrypt_with_' + key + '(' + message + ')'; // dummy value
+  // decode key string
+  const derString = forge.util.decode64(key);
+  // convert to ASN.1 format
+  const asn = forge.asn1.fromDer(derString);
+  const publicKey = forge.pki.publicKeyFromAsn1(asn);
+  return forge.util.encode64(publicKey.encrypt(message));
 }
 
 export function generateIdentityProof(data) {
