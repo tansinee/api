@@ -7,6 +7,7 @@ import (
 
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
+	"github.com/ndidplatform/api/rp"
 	"github.com/tylerb/graceful"
 )
 
@@ -27,6 +28,8 @@ func main() {
 
 	// Routes
 	e.GET("/", well)
+
+	e.POST(rp.CreatePath, rp.Create)
 
 	// Start server
 	e.Server.Addr = ":1323"

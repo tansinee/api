@@ -8,6 +8,44 @@
   version = "v3.2.0"
 
 [[projects]]
+  name = "github.com/go-kit/kit"
+  packages = [
+    "log",
+    "log/level",
+    "log/term"
+  ]
+  revision = "4dc7be5d2d12881735283bcab7352178e190fc71"
+  version = "v0.6.0"
+
+[[projects]]
+  name = "github.com/go-logfmt/logfmt"
+  packages = ["."]
+  revision = "390ab7935ee28ec6b286364bba9b4dd6410cb3d5"
+  version = "v0.3.0"
+
+[[projects]]
+  name = "github.com/go-stack/stack"
+  packages = ["."]
+  revision = "259ab82a6cad3992b4e21ff5cac294ccb06474bc"
+  version = "v1.7.0"
+
+[[projects]]
+  name = "github.com/gogo/protobuf"
+  packages = [
+    "gogoproto",
+    "proto",
+    "protoc-gen-gogo/descriptor"
+  ]
+  revision = "1adfc126b41513cc696b209667c8656ea7aac67c"
+  version = "v1.0.0"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/kr/logfmt"
+  packages = ["."]
+  revision = "b84e30acd515aadc4b783ad4ff83aff3299bdfe0"
+
+[[projects]]
   name = "github.com/labstack/echo"
   packages = [
     ".",
@@ -38,6 +76,27 @@
   packages = ["."]
   revision = "0360b2af4f38e8d38c7fce2a9f4e702702d73a39"
   version = "v0.0.3"
+
+[[projects]]
+  name = "github.com/pkg/errors"
+  packages = ["."]
+  revision = "645ef00459ed84a119197bfb8d8205042c6df63d"
+  version = "v0.8.0"
+
+[[projects]]
+  name = "github.com/satori/go.uuid"
+  packages = ["."]
+  revision = "f58768cc1a7a7e77a3bd49e98cdd21419399b6a3"
+  version = "v1.2.0"
+
+[[projects]]
+  name = "github.com/tendermint/tmlibs"
+  packages = [
+    "common",
+    "log"
+  ]
+  revision = "d94e312673e16a11ea55d742cefb3e331228f898"
+  version = "v0.8.2"
 
 [[projects]]
   name = "github.com/tylerb/graceful"
@@ -75,6 +134,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "cfa189c90845d0185a916432a80c2b1b693e22e41273bcbf8afe741013417465"
+  inputs-digest = "93332a6ff186500b784dce86a2a7aa85fff00060cb77f3e15a674d27c8862952"
   solver-name = "gps-cdcl"
   solver-version = 1
