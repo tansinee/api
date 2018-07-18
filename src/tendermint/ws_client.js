@@ -56,12 +56,12 @@ export default class TendermintWsClient extends EventEmitter {
 
       this.emit('connected');
 
-      this.pingIntervalFn = setInterval(() => {
-        if (this.isAlive === false) return this.ws.terminate();
+      // this.pingIntervalFn = setInterval(() => {
+      //   if (this.isAlive === false) return this.ws.terminate();
 
-        this.isAlive = false;
-        this.ws.ping();
-      }, PING_INTERVAL);
+      //   this.isAlive = false;
+      //   this.ws.ping();
+      // }, PING_INTERVAL);
 
       // this.subscribeToNewBlockHeaderEvent();
       this.subscribeToNewBlockEvent();
@@ -80,8 +80,8 @@ export default class TendermintWsClient extends EventEmitter {
 
       this.wsConnected = false;
       this.isAlive = false;
-      clearInterval(this.pingIntervalFn);
-      this.pingIntervalFn = null;
+      // clearInterval(this.pingIntervalFn);
+      // this.pingIntervalFn = null;
 
       if (this.reconnect) {
         // Try reconnect
@@ -135,9 +135,9 @@ export default class TendermintWsClient extends EventEmitter {
       this.emit(message.id, message.error, message.result);
     });
 
-    this.ws.on('pong', () => {
-      this.isAlive = true;
-    });
+    // this.ws.on('pong', () => {
+    //   this.isAlive = true;
+    // });
   }
 
   /**
